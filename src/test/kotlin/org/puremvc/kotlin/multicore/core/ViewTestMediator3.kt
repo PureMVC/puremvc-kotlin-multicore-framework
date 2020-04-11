@@ -11,13 +11,14 @@ package org.puremvc.kotlin.multicore.core
 import org.puremvc.kotlin.multicore.interfaces.IMediator
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
+import java.lang.ref.WeakReference
 
 /**
  * A Mediator class used by ViewTest.
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator3(view: ViewTest) : Mediator(NAME, view), IMediator {
+class ViewTestMediator3(var view: WeakReference<ViewTest>) : Mediator(NAME, view as WeakReference<Any?>), IMediator {
 
     companion object {
         /**
@@ -33,11 +34,7 @@ class ViewTestMediator3(view: ViewTest) : Mediator(NAME, view), IMediator {
     }
 
     override fun handleNotification(notification: INotification) {
-        getViewTest().lastNotification = notification.name
-    }
-
-    fun getViewTest(): ViewTest {
-        return viewComponent as ViewTest
+        view.get()?.lastNotification = notification.name
     }
 
 }

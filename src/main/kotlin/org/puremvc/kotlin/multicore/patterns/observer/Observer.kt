@@ -10,6 +10,7 @@ package org.puremvc.kotlin.multicore.patterns.observer
 
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.interfaces.IObserver
+import java.lang.ref.WeakReference
 
 /**
  * <P>A base <code>IObserver</code> implementation.</P>
@@ -33,7 +34,7 @@ import org.puremvc.kotlin.multicore.interfaces.IObserver
  * @constructor Creates an Observer
  */
 
-open class Observer(override var notifyMethod: ((INotification) -> Unit)?, override var notifyContext: Any?) : IObserver {
+open class Observer(override var notifyMethod: ((INotification) -> Unit)?, override var notifyContext: WeakReference<Any?>?) : IObserver {
 
     /**
      * <P>Notify the interested object.</P>
@@ -51,7 +52,7 @@ open class Observer(override var notifyMethod: ((INotification) -> Unit)?, overr
      * @return boolean indicating if the object and the notification context are the same
      */
     override fun compareNotifyContext(context: Any): Boolean {
-        return context == notifyContext
+        return context == notifyContext?.get()
     }
 
 }

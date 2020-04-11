@@ -14,6 +14,7 @@ import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
 import org.puremvc.kotlin.multicore.patterns.observer.Observer
+import java.lang.ref.WeakReference
 
 /**
  * Test the PureMVC View class.
@@ -76,7 +77,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey2") { key -> View(key) }
 
         // Create observer, passing in notification method and context
-        val observer = Observer(this::viewTestMethod, this)
+        val observer = Observer(this::viewTestMethod, WeakReference(this))
 
         // Register Observer's interest in a particular Notification with the View
         view.registerObserver(ViewTestNote.NAME, observer)
@@ -112,7 +113,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey3") { key -> View(key) }
 
         // Create and register the test mediator
-        val viewTestMediator = ViewTestMediator(this)
+        val viewTestMediator = ViewTestMediator(WeakReference(this))
         view.registerMediator(viewTestMediator)
 
         // Retrieve the component
@@ -131,7 +132,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey4") { key -> View(key) }
 
         // Create and register the test mediator
-        val mediator = Mediator("hasMediatorTest", this)
+        val mediator = Mediator("hasMediatorTest", WeakReference(this))
         view.registerMediator(mediator)
 
         // assert that the view.hasMediator method returns true
@@ -154,7 +155,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey5") { key -> View(key) }
 
         // Create and register the test mediator
-        val mediator = Mediator("testing", this)
+        val mediator = Mediator("testing", WeakReference(this))
         view.registerMediator(mediator)
 
         // Remove the component
@@ -176,7 +177,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey6") { key -> View(key) }
 
         // Create and register the test mediator
-        val mediator = ViewTestMediator4(this)
+        val mediator = ViewTestMediator4(WeakReference(this))
         view.registerMediator(mediator)
 
         // assert that onRegister was called, and the mediator responded by setting our boolean
@@ -199,7 +200,7 @@ class ViewTest {
 
         // Create and register the test mediator,
         // but not so we have a reference to it
-        view.registerMediator(ViewTestMediator(this))
+        view.registerMediator(ViewTestMediator(WeakReference(this)))
 
         // test that we can retrieve it
         Assert.assertNotNull(view.retrieveMediator(ViewTestMediator.NAME) as ViewTestMediator)
@@ -214,7 +215,7 @@ class ViewTest {
         Assert.assertNull(view.retrieveMediator(ViewTestMediator.NAME))
 
         // Create and register another instance of the test mediator,
-        view.registerMediator(ViewTestMediator(this))
+        view.registerMediator(ViewTestMediator(WeakReference(this)))
 
         Assert.assertNotNull(view.retrieveMediator(ViewTestMediator.NAME))
 
@@ -236,7 +237,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey8") { key -> View(key) }
 
         // Create and register the test mediator to be removed.
-        view.registerMediator(ViewTestMediator2(this))
+        view.registerMediator(ViewTestMediator2(WeakReference(this)))
 
         // test that notifications work
         view.notifyObservers(Notification(NOTE1))
@@ -273,10 +274,10 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey9") { key -> View(key) }
 
         // Create and register that responds to notifications 1 and 2
-        view.registerMediator(ViewTestMediator2(this))
+        view.registerMediator(ViewTestMediator2(WeakReference(this)))
 
         // Create and register that responds to notification 3
-        view.registerMediator(ViewTestMediator3(this))
+        view.registerMediator(ViewTestMediator3(WeakReference(this)))
 
         // test that all notifications work
         view.notifyObservers(Notification(NOTE1))
@@ -322,10 +323,10 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey10") { key -> View(key) }
 
         // Create and register that responds to notification 5
-        view.registerMediator(ViewTestMediator5(this))
+        view.registerMediator(ViewTestMediator5(WeakReference(this)))
 
         // try to register another instance of that mediator (uses the same NAME constant).
-        view.registerMediator(ViewTestMediator5(this))
+        view.registerMediator(ViewTestMediator5(WeakReference(this)))
 
         // test that the counter is only incremented once (mediator 5's response)
         counter = 0
@@ -360,14 +361,14 @@ class ViewTest {
         // Create and register several mediator instances that respond to notification 6
         // by removing themselves, which will cause the observer list for that notification
         // to change.
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/1", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/2", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/3", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/4", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/5", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/6", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/7", this)))
-        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/8", this)))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/1", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/2", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/3", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/4", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/5", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/6", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/7", WeakReference(this))))
+        view.registerMediator((ViewTestMediator6(ViewTestMediator6.NAME + "/8", WeakReference(this))))
 
         // clear the counter
         counter = 0;

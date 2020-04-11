@@ -13,6 +13,7 @@ import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.interfaces.IObserver
 import org.puremvc.kotlin.multicore.interfaces.IView
 import org.puremvc.kotlin.multicore.patterns.observer.Observer
+import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -74,10 +75,10 @@ open class View(key: String): IView {
     protected var multitonKey: String
 
     // Mapping of Mediator names to Mediator instances
-    protected var mediatorMap = ConcurrentHashMap<String, IMediator>()
+    protected val mediatorMap = ConcurrentHashMap<String, IMediator>()
 
     // Mapping of Notification names to Observer lists
-    protected var observerMap = ConcurrentHashMap<String, MutableList<IObserver>>()
+    protected val observerMap = ConcurrentHashMap<String, MutableList<IObserver>>()
 
     /**
      * <P>Constructor.</P>
@@ -202,11 +203,8 @@ open class View(key: String): IView {
 
         // Register Mediator as an observer for each notification of interests
         if (interests.isNotEmpty()) {
-            // Create Observer referencing this mediator's handlNotification method
-            val observer = Observer(
-                mediator::handleNotification,
-                mediator
-            )
+            // Create Observer referencing this mediator's handleNotification method
+            val observer = Observer(mediator::handleNotification, WeakReference(mediator))
 
             // Register Mediator as Observer for its list of Notification interests
             for(notificationName in interests) {

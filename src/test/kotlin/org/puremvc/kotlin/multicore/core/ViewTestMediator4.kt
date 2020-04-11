@@ -10,13 +10,14 @@ package org.puremvc.kotlin.multicore.core
 
 import org.puremvc.kotlin.multicore.interfaces.IMediator
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
+import java.lang.ref.WeakReference
 
 /**
  * A Mediator class used by ViewTest.
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator4(view: ViewTest) : Mediator(NAME, view), IMediator {
+class ViewTestMediator4(var view: WeakReference<ViewTest>) : Mediator(NAME, view as WeakReference<Any?>), IMediator {
 
     companion object {
         /**
@@ -25,16 +26,12 @@ class ViewTestMediator4(view: ViewTest) : Mediator(NAME, view), IMediator {
         const val NAME = "ViewTestMediator4"
     }
 
-    fun getViewTest(): ViewTest {
-        return viewComponent as ViewTest
-    }
-
     override fun onRegister() {
-        getViewTest().onRegisterCalled = true
+        view.get()?.onRegisterCalled = true
     }
 
     override fun onRemove() {
-        getViewTest().onRemoveCalled = true
+        view.get()?.onRemoveCalled = true
     }
 
 }

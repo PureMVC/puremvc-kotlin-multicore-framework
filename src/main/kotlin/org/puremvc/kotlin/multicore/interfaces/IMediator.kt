@@ -8,6 +8,8 @@
 
 package org.puremvc.kotlin.multicore.interfaces
 
+import java.lang.ref.WeakReference
+
 /**
  * <P>The interface definition for a PureMVC Mediator.</P>
  *
@@ -56,7 +58,7 @@ package org.puremvc.kotlin.multicore.interfaces
  * import javax.swing.JComboBox;
  * import java.awt.event.ActionListener;
  *
- * class ViewTestMediator(viewComponent: Any) : Mediator(NAME, viewComponent), IMediator {
+ * class ViewTestMediator(override var viewComponent: WeakReference<Any?>?) : Mediator(NAME, viewComponent), IMediator {
  *
  *     init {
  *         combo.addActionListener( this )
@@ -87,7 +89,7 @@ package org.puremvc.kotlin.multicore.interfaces
  *
  *     // A private getter for accessing the view object by class
  *     fun combo(): JComboBox {
- *         return viewComponent
+ *         return viewComponent?.get() as JComboBox
  *     }
  *
  * }
@@ -100,7 +102,7 @@ interface IMediator : INotifier {
 
     val name: String
 
-    var viewComponent: Any?
+    var viewComponent: WeakReference<Any?>?
 
     /**
      * <P>List <code>INotification</code> interests.</P>

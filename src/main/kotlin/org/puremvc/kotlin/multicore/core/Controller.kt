@@ -13,6 +13,7 @@ import org.puremvc.kotlin.multicore.interfaces.IController
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.interfaces.IView
 import org.puremvc.kotlin.multicore.patterns.observer.Observer
+import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -90,7 +91,7 @@ open class Controller(key: String): IController {
     protected lateinit var view: IView
 
     // Mapping of Notification names to Command Factories
-    protected var commandMap = ConcurrentHashMap<String, () -> ICommand>()
+    protected val commandMap = ConcurrentHashMap<String, () -> ICommand>()
 
     /**
      * <P>Constructor.</P>
@@ -151,7 +152,7 @@ open class Controller(key: String): IController {
      */
     override fun registerCommand(notificationName: String, factory: () -> ICommand) {
         if (!commandMap.containsKey(notificationName)) {
-            view.registerObserver(notificationName, Observer(this::executeCommand, this))
+            view.registerObserver(notificationName, Observer(this::executeCommand, WeakReference(this)))
         }
         commandMap[notificationName] = factory
     }

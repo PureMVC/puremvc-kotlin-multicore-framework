@@ -13,6 +13,7 @@ import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.IProxy
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.proxy.Proxy
+import java.lang.ref.WeakReference
 
 /**
  * Test the PureMVC Facade class.
@@ -151,7 +152,7 @@ class FacadeTest {
     fun testRegisterRetrieveAndRemoveMediator() {
         // register a mediator, remove it, then try to retrieve it
         val facade = Facade.getInstance("FacadeTestKey6") { key -> Facade(key) }
-        facade.registerMediator(Mediator(Mediator.NAME, Any()))
+        facade.registerMediator(Mediator(Mediator.NAME, WeakReference(Any())))
 
         // retrieve the mediator
         Assert.assertNotNull(facade.retrieveMediator(Mediator.NAME))
@@ -184,7 +185,7 @@ class FacadeTest {
     fun testHasMediator() {
         // register a Mediator
         val facade = Facade.getInstance("FacadeTestKey8") { key -> Facade(key) }
-        facade.registerMediator(Mediator("facadeHasMediatorTest", Any()))
+        facade.registerMediator(Mediator("facadeHasMediatorTest", WeakReference(Any())))
 
         // assert that the facade.hasMediator method returns true
         // for that mediator name

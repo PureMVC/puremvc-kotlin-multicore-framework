@@ -11,6 +11,7 @@ package org.puremvc.kotlin.multicore.patterns.mediator
 import org.puremvc.kotlin.multicore.interfaces.IMediator
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.observer.Notifier
+import java.lang.ref.WeakReference
 
 /**
  * <P>A base <code>IMediator</code> implementation.</P>
@@ -20,7 +21,7 @@ import org.puremvc.kotlin.multicore.patterns.observer.Notifier
  * @constructor Creates a Mediator
  */
 
-open class Mediator(override val name: String, override var viewComponent: Any?) : Notifier(), IMediator {
+open class Mediator(override val name: String, override var viewComponent: WeakReference<Any?>?) : Notifier(), IMediator {
 
     companion object {
         /**

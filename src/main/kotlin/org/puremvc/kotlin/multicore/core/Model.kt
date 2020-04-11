@@ -75,7 +75,7 @@ open class Model(key: String): IModel {
     protected var multitonKey: String
 
     // Mapping of proxyNames to IProxy instances
-    protected var proxyMap = ConcurrentHashMap<String, IProxy>()
+    protected val proxyMap = ConcurrentHashMap<String, IProxy>()
 
     /**
      * <P>Constructor.</P>

@@ -10,6 +10,7 @@ package org.puremvc.kotlin.multicore.patterns.mediator
 
 import org.junit.Assert
 import org.junit.Test
+import java.lang.ref.WeakReference
 
 /**
  * Test the PureMVC Mediator class.
@@ -40,7 +41,7 @@ class MediatorTest {
         val view = Any()
 
         // Create a new Mediator and pass the view object
-        val mediator = Mediator(Mediator.NAME, view)
+        val mediator = Mediator(Mediator.NAME, WeakReference(view))
 
         // test assertions
         Assert.assertNotNull(mediator.viewComponent)

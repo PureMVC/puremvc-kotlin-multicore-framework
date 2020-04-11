@@ -11,6 +11,7 @@ package org.puremvc.kotlin.multicore.patterns.observer
 import org.junit.Assert
 import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.INotification
+import java.lang.ref.WeakReference
 
 /**
  * Tests PureMVC Observer class.
@@ -40,7 +41,7 @@ class ObserverTest {
         // Create observer with null args, then
         // use accessors to set notification method and context
         val observer = Observer(null, null)
-        observer.notifyContext = this
+        observer.notifyContext = WeakReference(this)
         observer.notifyMethod = this::handleNotification
 
         // create a test event, setting a payload value and notify
@@ -62,7 +63,7 @@ class ObserverTest {
     @Test
     fun testCompareNotifyContext() {
         // Create observer passing in notification method and context
-        val observer = Observer(this::handleNotification, this)
+        val observer = Observer(this::handleNotification, WeakReference(this))
 
         val negTestObj = Any()
 

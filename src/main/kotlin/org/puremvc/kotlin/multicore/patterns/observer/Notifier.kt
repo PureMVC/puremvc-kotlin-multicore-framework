@@ -50,7 +50,7 @@ import org.puremvc.kotlin.multicore.patterns.facade.Facade
 open class Notifier : INotifier {
 
     companion object {
-        val MULTITON_MSG = "multitonKey for this Notifier not yet initialized!"
+        const val MULTITON_MSG = "multitonKey for this Notifier not yet initialized!"
     }
 
     protected lateinit var multitonKey: String

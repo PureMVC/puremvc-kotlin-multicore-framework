@@ -10,13 +10,14 @@ package org.puremvc.kotlin.multicore.core
 
 import org.puremvc.kotlin.multicore.interfaces.IMediator
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
+import java.lang.ref.WeakReference
 
 /**
  * A Mediator class used by ViewTest.
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator(view: Any) : Mediator(NAME, view), IMediator {
+class ViewTestMediator(override var viewComponent: WeakReference<Any?>?) : Mediator(NAME, viewComponent), IMediator {
 
     companion object {
         /**
