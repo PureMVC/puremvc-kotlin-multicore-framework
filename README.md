@@ -19,7 +19,7 @@ allprojects {
 **Step 2.** Add the dependency
 ```groovy
 dependencies {
-  implementation 'com.github.PureMVC:puremvc-kotlin-multicore-framework:1.0.0'
+  implementation 'com.github.PureMVC:puremvc-kotlin-multicore-framework:1.1.0'
 }
 ```
 ## Demos
@@ -30,7 +30,7 @@ dependencies {
 * [Android](https://en.wikipedia.org/wiki/Android_(operating_system))
 
 ## Status
-Production - [Version 1.0](https://github.com/PureMVC/puremvc-java-multicore-framework/blob/master/VERSION)
+Production - [Version 1.1](https://github.com/PureMVC/puremvc-java-multicore-framework/blob/master/VERSION)
 
 ## License
 * PureMVC MultiCore Framework for Kotlin - Copyright © 2020 [Saad Shams](https://www.linkedin.com/in/muizz)
