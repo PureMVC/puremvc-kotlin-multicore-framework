@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator(override var viewComponent: WeakReference<Any?>?) : Mediator(NAME, viewComponent), IMediator {
+class ViewTestMediator(override var viewComponent: WeakReference<*>?) : Mediator(NAME, viewComponent), IMediator {
 
     companion object {
         /**

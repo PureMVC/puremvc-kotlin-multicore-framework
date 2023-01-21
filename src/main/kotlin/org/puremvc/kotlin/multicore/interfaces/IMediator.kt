@@ -102,7 +102,7 @@ interface IMediator : INotifier {
 
     val name: String
 
-    var viewComponent: WeakReference<Any?>?
+    var viewComponent: WeakReference<*>?
 
     /**
      * <P>List <code>INotification</code> interests.</P>
