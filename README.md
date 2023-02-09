@@ -30,7 +30,7 @@ dependencies {
 * [Android](https://en.wikipedia.org/wiki/Android_(operating_system))
 
 ## Status
-Production - [Version 1.2](https://github.com/PureMVC/puremvc-kotlin-multicore-framework/blob/master/VERSION)
+Production - [Version 1.3](https://github.com/PureMVC/puremvc-kotlin-multicore-framework/blob/master/VERSION)
 
 ## License
 * PureMVC MultiCore Framework for Kotlin - Copyright © 2020 [Saad Shams](https://www.linkedin.com/in/muizz)

@@ -1,12 +1,14 @@
 PureMVC MultiCore Framework for Kotlin
 --------------------------------------------------------------------------
-Release Date: 04/11/20
+Release Date: 02/08/23
     Platform: Kotlin
      Version: 1
-    Revision: 2
+    Revision: 3
        Minor: 0
       Author: Saad Shams <saad.shams@puremvc.org>
 --------------------------------------------------------------------------
+1.3 - Removed JUnit Dependency from the implementation
+
 1.2 - Refactoring Mediator to accept start projected WeakReferences
 
 1.1 - Refactoring Mediator to accept WeakReferences
