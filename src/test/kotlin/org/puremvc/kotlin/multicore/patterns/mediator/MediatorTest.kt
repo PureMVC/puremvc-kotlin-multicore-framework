@@ -2,15 +2,16 @@
 //  MediatorTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.mediator
 
-import org.junit.Assert
-import org.junit.Test
 import java.lang.ref.WeakReference
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 /**
  * Test the PureMVC Mediator class.
@@ -29,7 +30,7 @@ class MediatorTest {
         val mediator = Mediator()
 
         // test assertions
-        Assert.assertEquals(Mediator.NAME, mediator.name)
+        assertEquals(Mediator.NAME, mediator.name)
     }
 
     /**
@@ -44,6 +45,6 @@ class MediatorTest {
         val mediator = Mediator(Mediator.NAME, WeakReference(view))
 
         // test assertions
-        Assert.assertNotNull(mediator.viewComponent)
+        assertNotNull(mediator.viewComponent)
     }
 }

@@ -2,19 +2,24 @@
 //  ViewTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.core
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
 import org.puremvc.kotlin.multicore.patterns.observer.Observer
 import java.lang.ref.WeakReference
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  * Test the PureMVC View class.
@@ -50,7 +55,7 @@ class ViewTest {
         val view = View.getInstance("ViewTestKey1") { key -> View(key) }
 
         // test assertions
-        Assert.assertNotNull(view)
+        assertNotNull(view)
     }
 
     /**
@@ -93,7 +98,7 @@ class ViewTest {
         view.notifyObservers(note)
 
         // test assertions
-        Assert.assertEquals(viewTestVar, 10)
+        assertEquals(viewTestVar, 10)
     }
 
     /**
@@ -120,7 +125,7 @@ class ViewTest {
         val mediator = view.retrieveMediator(ViewTestMediator.NAME)
 
         // test assertions
-        Assert.assertNotNull(mediator as ViewTestMediator)
+        assertNotNull(mediator as ViewTestMediator)
     }
 
     /**
@@ -137,13 +142,13 @@ class ViewTest {
 
         // assert that the view.hasMediator method returns true
         // for that mediator name
-        Assert.assertTrue(view.hasMediator("hasMediatorTest"))
+        assertTrue(view.hasMediator("hasMediatorTest"))
 
         view.removeMediator("hasMediatorTest")
 
         // assert that the view.hasMediator method returns false
         // for that mediator name
-        Assert.assertFalse(view.hasMediator("hasMediatorTest"))
+        assertFalse(view.hasMediator("hasMediatorTest"))
     }
 
     /**
@@ -162,10 +167,10 @@ class ViewTest {
         val removedMediator = view.removeMediator("testing")
 
         // assert that we have removed the appropriate mediator
-        Assert.assertEquals("testing", removedMediator!!.name)
+        assertEquals("testing", removedMediator!!.name)
 
         // assert that the mediator is no longer retrievable
-        Assert.assertNull(view.removeMediator("testing"))
+        assertNull(view.removeMediator("testing"))
     }
 
     /**
@@ -181,13 +186,13 @@ class ViewTest {
         view.registerMediator(mediator)
 
         // assert that onRegister was called, and the mediator responded by setting our boolean
-        Assert.assertTrue(onRegisterCalled)
+        assertTrue(onRegisterCalled)
 
         // Remove the component
         view.removeMediator(ViewTestMediator4.NAME)
 
         // assert that onRemove was called, and the mediator responded by setting our boolean
-        Assert.assertTrue(onRemoveCalled)
+        assertTrue(onRemoveCalled)
     }
 
     /**
@@ -203,27 +208,27 @@ class ViewTest {
         view.registerMediator(ViewTestMediator(WeakReference(this)))
 
         // test that we can retrieve it
-        Assert.assertNotNull(view.retrieveMediator(ViewTestMediator.NAME) as ViewTestMediator)
+        assertNotNull(view.retrieveMediator(ViewTestMediator.NAME) as ViewTestMediator)
 
         // Remove the Mediator
         view.removeMediator(ViewTestMediator.NAME)
 
         // test that retrieving it now returns null
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator.NAME))
 
         // test that removing the mediator again once its gone doesn't cause crash
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator.NAME))
 
         // Create and register another instance of the test mediator,
         view.registerMediator(ViewTestMediator(WeakReference(this)))
 
-        Assert.assertNotNull(view.retrieveMediator(ViewTestMediator.NAME))
+        assertNotNull(view.retrieveMediator(ViewTestMediator.NAME))
 
         // Remove the Mediator
         view.removeMediator(ViewTestMediator.NAME)
 
         // test that retrieving it now returns null
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator.NAME))
     }
 
     /**
@@ -241,16 +246,16 @@ class ViewTest {
 
         // test that notifications work
         view.notifyObservers(Notification(NOTE1))
-        Assert.assertEquals(NOTE1, lastNotification)
+        assertEquals(NOTE1, lastNotification)
 
         view.notifyObservers(Notification(NOTE2))
-        Assert.assertEquals(NOTE2, lastNotification)
+        assertEquals(NOTE2, lastNotification)
 
         // Remove the Mediator
         view.removeMediator(ViewTestMediator2.NAME)
 
         // test that retrieving it now returns null
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator2.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator2.NAME))
 
         // test that notifications no longer work
         // (ViewTestMediator2 is the one that sets lastNotification
@@ -258,10 +263,10 @@ class ViewTest {
         lastNotification = ""
 
         view.notifyObservers(Notification(NOTE1))
-        Assert.assertTrue(lastNotification != NOTE1)
+        assertTrue(lastNotification != NOTE1)
 
         view.notifyObservers(Notification(NOTE2))
-        Assert.assertTrue(lastNotification != NOTE2)
+        assertTrue(lastNotification != NOTE2)
     }
 
     /**
@@ -281,32 +286,32 @@ class ViewTest {
 
         // test that all notifications work
         view.notifyObservers(Notification(NOTE1))
-        Assert.assertEquals(NOTE1, lastNotification)
+        assertEquals(NOTE1, lastNotification)
 
         view.notifyObservers(Notification(NOTE2))
-        Assert.assertEquals(NOTE2, lastNotification)
+        assertEquals(NOTE2, lastNotification)
 
         view.notifyObservers(Notification(NOTE3))
-        Assert.assertEquals(NOTE3, lastNotification)
+        assertEquals(NOTE3, lastNotification)
 
         // Remove the Mediator that responds to 1 and 2
         view.removeMediator(ViewTestMediator2.NAME)
 
         // test that retrieving it now returns null
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator2.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator2.NAME))
 
         // test that notifications no longer work
         // for notifications 1 and 2, but still work for 3
         lastNotification = ""
 
         view.notifyObservers(Notification(NOTE1))
-        Assert.assertNotEquals(NOTE1, lastNotification)
+        assertNotEquals(NOTE1, lastNotification)
 
         view.notifyObservers(Notification(NOTE2))
-        Assert.assertNotEquals(NOTE2, lastNotification)
+        assertNotEquals(NOTE2, lastNotification)
 
         view.notifyObservers(Notification(NOTE3))
-        Assert.assertEquals(NOTE3, lastNotification)
+        assertEquals(NOTE3, lastNotification)
     }
 
     /**
@@ -331,18 +336,18 @@ class ViewTest {
         // test that the counter is only incremented once (mediator 5's response)
         counter = 0
         view.notifyObservers(Notification(NOTE5))
-        Assert.assertEquals(1, counter)
+        assertEquals(1, counter)
 
         // Remove the Mediator
         view.removeMediator(ViewTestMediator5.NAME)
 
         // test that retrieving it now returns null
-        Assert.assertNull(view.retrieveMediator(ViewTestMediator5.NAME))
+        assertNull(view.retrieveMediator(ViewTestMediator5.NAME))
 
         // test that the counter is no longer incremented
         counter = 0
         view.notifyObservers(Notification(NOTE5))
-        Assert.assertEquals(0, counter)
+        assertEquals(0, counter)
     }
 
     /**
@@ -378,12 +383,12 @@ class ViewTest {
         // count of 8, since 8 mediators will respond.
         view.notifyObservers(Notification(NOTE6))
         // verify the count is correct
-        Assert.assertEquals(8, counter)
+        assertEquals(8, counter)
 
         // clear the counter
         counter = 0
         view.notifyObservers(Notification(NOTE6))
         // verify the count is 0
-        Assert.assertEquals(0, counter)
+        assertEquals(0, counter)
     }
 }

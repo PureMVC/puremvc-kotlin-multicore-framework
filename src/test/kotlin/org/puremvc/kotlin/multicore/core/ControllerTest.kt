@@ -2,15 +2,18 @@
 //  ControllerTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.core
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 /**
  * Test the PureMVC Controller class.
@@ -29,7 +32,7 @@ class ControllerTest {
         val controller = Controller.getInstance("ControllerTestKey1") { key -> Controller(key) }
 
         // test assertions
-        Assert.assertNotNull(controller)
+        assertNotNull(controller)
     }
 
     /**
@@ -61,7 +64,7 @@ class ControllerTest {
         controller.executeCommand(note)
 
         // test assertions
-        Assert.assertEquals(24, vo.result)
+        assertEquals(24, vo.result)
     }
 
     /**
@@ -86,7 +89,7 @@ class ControllerTest {
         controller.executeCommand(note)
 
         // test assertions
-        Assert.assertEquals(24, vo.result)
+        assertEquals(24, vo.result)
 
         // Reset result
         vo.result = 0
@@ -100,7 +103,7 @@ class ControllerTest {
         controller.executeCommand(note)
 
         // test assertions
-        Assert.assertEquals(0, vo.result)
+        assertEquals(0, vo.result)
     }
 
     /**
@@ -113,13 +116,13 @@ class ControllerTest {
         controller.registerCommand("hasCommandTest") { ControllerTestCommand() }
 
         // test that hasCommand returns true for hasCommandTest notifications
-        Assert.assertTrue(controller.hasCommand("hasCommandTest"))
+        assertTrue(controller.hasCommand("hasCommandTest"))
 
         // Remove the Command from the Controller
         controller.removeCommand("hasCommandTest")
 
         // test that hasCommand returns false for hasCommandTest notifications
-        Assert.assertFalse(controller.hasCommand("hasCommandTest"))
+        assertFalse(controller.hasCommand("hasCommandTest"))
     }
 
     /**
@@ -155,13 +158,13 @@ class ControllerTest {
 
         // test assertions
         // if the command is executed once the value will be 24
-        Assert.assertEquals(24, vo.result)
+        assertEquals(24, vo.result)
 
         // Prove that accumulation works in the VO by sending the notification again
         view.notifyObservers(note)
 
         // if the command is executed twice the value will be 48
-        Assert.assertEquals(48, vo.result)
+        assertEquals(48, vo.result)
     }
 
 }

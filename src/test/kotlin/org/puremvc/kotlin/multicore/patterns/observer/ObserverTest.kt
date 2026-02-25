@@ -2,16 +2,18 @@
 //  ObserverTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.observer
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import java.lang.ref.WeakReference
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 /**
  * Tests PureMVC Observer class.
@@ -54,7 +56,7 @@ class ObserverTest {
         observer.notifyObserver(note)
 
         // test assertions
-        Assert.assertEquals(10, observerTestVar)
+        assertEquals(10, observerTestVar)
     }
 
     /**
@@ -68,8 +70,8 @@ class ObserverTest {
         val negTestObj = Any()
 
         // test assertions
-        Assert.assertFalse(observer.compareNotifyContext(negTestObj))
-        Assert.assertTrue(observer.compareNotifyContext(this))
+        assertFalse(observer.compareNotifyContext(negTestObj))
+        assertTrue(observer.compareNotifyContext(this))
     }
 
     /**

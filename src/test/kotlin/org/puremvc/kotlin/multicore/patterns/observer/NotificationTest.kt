@@ -2,15 +2,15 @@
 //  NotificationTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.observer
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.INotification
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * Test the PureMVC Notification class.
@@ -28,7 +28,7 @@ class NotificationTest {
         val note: INotification = Notification("TestNote")
 
         // test assertions
-        Assert.assertEquals(note.name, "TestNote")
+        assertEquals(note.name, "TestNote")
     }
 
     /**
@@ -41,7 +41,7 @@ class NotificationTest {
         note.body = 5
 
         // test assertions
-        Assert.assertEquals(note.body, 5)
+        assertEquals(note.body, 5)
     }
 
     /**
@@ -53,9 +53,9 @@ class NotificationTest {
         val note: INotification = Notification("TestNote", 5, "TestNoteType")
 
         // test assertions
-        Assert.assertEquals(note.name, "TestNote")
-        Assert.assertEquals(note.body, 5)
-        Assert.assertEquals(note.type, "TestNoteType")
+        assertEquals(note.name, "TestNote")
+        assertEquals(note.body, 5)
+        assertEquals(note.type, "TestNoteType")
     }
 
     /**
@@ -68,7 +68,7 @@ class NotificationTest {
         val ts = "Notification Name: TestNote\nBody:1,3,5\nType:TestType"
 
         // test assertions
-        Assert.assertTrue(note.toString() == ts)
+        assertEquals(note.toString(), ts)
 
     }
 

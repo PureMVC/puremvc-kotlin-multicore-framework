@@ -2,18 +2,22 @@
 //  FacadeTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.facade
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.IProxy
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.proxy.Proxy
 import java.lang.ref.WeakReference
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  * Test the PureMVC Facade class.
@@ -32,7 +36,7 @@ class FacadeTest {
         val facade = Facade.getInstance("FacadeTestKey1") { key -> Facade(key) }
 
         // test assertions
-        Assert.assertNotNull(facade)
+        assertNotNull(facade)
     }
 
     /**
@@ -62,7 +66,7 @@ class FacadeTest {
         facade.sendNotification("FacadeTestNote", vo)
 
         // test assertions
-        Assert.assertEquals(64, vo.result)
+        assertEquals(64, vo.result)
     }
 
     /**
@@ -93,7 +97,7 @@ class FacadeTest {
         facade.sendNotification("FacadeTestNote", vo)
 
         // test assertions
-        Assert.assertEquals(0, vo.result)
+        assertEquals(0, vo.result)
     }
 
     /**
@@ -112,17 +116,17 @@ class FacadeTest {
         val proxy: IProxy? = facade.retrieveProxy("colors")
 
         // test assertions
-        Assert.assertNotNull(proxy)
+        assertNotNull(proxy)
 
         // retrieve data from proxy
         val data = (proxy?.data as? Array<*>)?.filterIsInstance<String>()
 
         // test assertions
-        Assert.assertNotNull(data)
-        Assert.assertEquals(3, data?.size)
-        Assert.assertEquals(data?.get(0), "red")
-        Assert.assertEquals(data?.get(1), "green")
-        Assert.assertEquals(data?.get(2), "blue")
+        assertNotNull(data)
+        assertEquals(3, data?.size)
+        assertEquals(data?.get(0), "red")
+        assertEquals(data?.get(1), "green")
+        assertEquals(data?.get(2), "blue")
     }
 
     /**
@@ -139,10 +143,10 @@ class FacadeTest {
         val removeProxy = facade.removeProxy("sizes")
 
         // assert that we removed the appropriate proxy
-        Assert.assertEquals("sizes", removeProxy?.name)
+        assertEquals("sizes", removeProxy?.name)
 
         // test assertions - make sure we can no longer retrieve the proxy from the model
-        Assert.assertNull(facade.retrieveProxy("sizes"))
+        assertNull(facade.retrieveProxy("sizes"))
     }
 
     /**
@@ -155,16 +159,16 @@ class FacadeTest {
         facade.registerMediator(Mediator(Mediator.NAME, WeakReference(Any())))
 
         // retrieve the mediator
-        Assert.assertNotNull(facade.retrieveMediator(Mediator.NAME))
+        assertNotNull(facade.retrieveMediator(Mediator.NAME))
 
         // remove the mediator
         val removedMediator = facade.removeMediator(Mediator.NAME)
 
         // assert that we have removed the appropriate mediator
-        Assert.assertEquals(Mediator.NAME, removedMediator?.name)
+        assertEquals(Mediator.NAME, removedMediator?.name)
 
         // assert that the mediator is no longer retrievable
-        Assert.assertNull(facade.retrieveMediator(Mediator.NAME))
+        assertNull(facade.retrieveMediator(Mediator.NAME))
     }
 
     @Test
@@ -175,7 +179,7 @@ class FacadeTest {
 
         // assert that the model.hasProxy method returns true
         // for that proxy name
-        Assert.assertTrue(facade.hasProxy("hasProxyTest"))
+        assertTrue(facade.hasProxy("hasProxyTest"))
     }
 
     /**
@@ -189,13 +193,13 @@ class FacadeTest {
 
         // assert that the facade.hasMediator method returns true
         // for that mediator name
-        Assert.assertTrue(facade.hasMediator("facadeHasMediatorTest"))
+        assertTrue(facade.hasMediator("facadeHasMediatorTest"))
 
         facade.removeMediator("facadeHasMediatorTest")
 
         // assert that the facade.hasMediator method returns false
         // for that mediator name
-        Assert.assertFalse(facade.hasMediator("facadeHasMediatorTest"))
+        assertFalse(facade.hasMediator("facadeHasMediatorTest"))
     }
 
     /**
@@ -208,13 +212,13 @@ class FacadeTest {
         facade.registerCommand("facadeHasCommandTest") { FacadeTestCommand() }
 
         // test that hasCommand returns true for hasCommandTest notifications
-        Assert.assertTrue(facade.hasCommand("facadeHasCommandTest"))
+        assertTrue(facade.hasCommand("facadeHasCommandTest"))
 
         // Remove the Command from the Controller
         facade.removeCommand("facadeHasCommandTest")
 
         // test that hasCommand returns false for hasCommandTest notifications
-        Assert.assertFalse(facade.hasCommand("facadeHasCommandTest"))
+        assertFalse(facade.hasCommand("facadeHasCommandTest"))
     }
 
     /**
@@ -223,18 +227,18 @@ class FacadeTest {
     @Test
     fun testHasCoreAndRemoveCore() {
         // assert that the Facade.hasCore method returns false first
-        Assert.assertFalse(Facade.hasCore("FacadeTestKey11"))
+        assertFalse(Facade.hasCore("FacadeTestKey11"))
 
         // register a Core
         Facade.getInstance("FacadeTestKey11") { key -> Facade(key) }
 
-        Assert.assertTrue(Facade.hasCore("FacadeTestKey11"))
+        assertTrue(Facade.hasCore("FacadeTestKey11"))
 
         // remove the Core
         Facade.removeCore("FacadeTestKey11")
 
         // assert that the Facade.hasCore method returns false now that the core has been removed.
-        Assert.assertFalse(Facade.hasCore("FacadeTestKey11"))
+        assertFalse(Facade.hasCore("FacadeTestKey11"))
     }
 
 }

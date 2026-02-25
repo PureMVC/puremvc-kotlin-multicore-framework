@@ -2,15 +2,15 @@
 //  ProxyTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.proxy
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.IProxy
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * Test the PureMVC Proxy class.
@@ -28,7 +28,7 @@ class ProxyTest {
         val proxy: IProxy = Proxy("TestProxy")
 
         // test assertions
-        Assert.assertEquals("TestProxy", proxy.name)
+        assertEquals("TestProxy", proxy.name)
     }
 
     /**
@@ -43,10 +43,10 @@ class ProxyTest {
         val data = proxy.data as Array<*>
 
         // test assertions
-        Assert.assertEquals(3, data.size)
-        Assert.assertEquals("red", data[0])
-        Assert.assertEquals("green", data[1])
-        Assert.assertEquals("blue", data[2])
+        assertEquals(3, data.size)
+        assertEquals("red", data[0])
+        assertEquals("green", data[1])
+        assertEquals("blue", data[2])
     }
 
     /**
@@ -59,10 +59,10 @@ class ProxyTest {
         val data = proxy.data as Array<*>
 
         // test assertions
-        Assert.assertEquals("colors", proxy.name)
-        Assert.assertEquals("red", data[0])
-        Assert.assertEquals("green", data[1])
-        Assert.assertEquals("blue", data[2])
+        assertEquals("colors", proxy.name)
+        assertEquals("red", data[0])
+        assertEquals("green", data[1])
+        assertEquals("blue", data[2])
     }
 
     @Test
@@ -70,7 +70,7 @@ class ProxyTest {
         val proxy: IProxy = Proxy()
 
         // test assertions
-        Assert.assertEquals(Proxy.NAME, proxy.name)
+        assertEquals(Proxy.NAME, proxy.name)
     }
 
 }

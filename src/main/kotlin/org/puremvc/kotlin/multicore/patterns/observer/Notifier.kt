@@ -2,8 +2,8 @@
 //  Notifier.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.observer
@@ -56,7 +56,7 @@ open class Notifier : INotifier {
     protected lateinit var multitonKey: String
 
     protected val facade: IFacade by lazy {
-        if (multitonKey.isNullOrEmpty()) throw RuntimeException(MULTITON_MSG)
+        if (multitonKey.isEmpty()) throw RuntimeException(MULTITON_MSG)
         Facade.getInstance(multitonKey) { key -> Facade(key) }
     }
 

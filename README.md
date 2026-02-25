@@ -1,40 +1,40 @@
-## [PureMVC](http://puremvc.github.com/) Kotlin MultiCore Framework
+## [PureMVC](http://puremvc.org) Kotlin MultiCore Framework
 
 PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. It supports [modular programming](http://en.wikipedia.org/wiki/Modular_programming) through the use of [Multiton](http://en.wikipedia.org/wiki/Multiton) Core actors instead of the [Singletons](http://en.wikipedia.org/wiki/Singleton_pattern).
 
-* [API Docs](http://puremvc.org/pages/docs/Java/multicore)
-* [Unit Tests](http://puremvc.github.io/pages/images/screenshots/PureMVC-Shot-Kotlin-Multicore-UnitTests.png)
+* [API Docs]()
 
-## Gradle Installation
-**Step 1.** Add the JitPack repository to your build file. 
-Add it in your root build.gradle at the end of repositories:
-```groovy
-allprojects {
-  repositories {
-    ...
-    maven { url 'https://jitpack.io' }
-  }
-}
+## Installation
+
+**Maven (Official Release)**
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.puremvc</groupId>
+    <artifactId>puremvc-kotlin-multicore</artifactId>
+    <version>1.3.0</version>
+  </dependency>
+</dependencies>
 ```
-**Step 2.** Add the dependency
-```groovy
+**Gradle (Kotlin DSL)**
+
+```kotlin
 dependencies {
-  implementation 'com.github.PureMVC:puremvc-kotlin-multicore-framework:1.2.0'
+    implementation("org.puremvc:puremvc-kotlin-multicore:1.4.0")
 }
 ```
+
 ## Demos
-* [Employee Admin Android App](https://github.com/PureMVC/purmevc-kotlin-demo-android-employeeadmin/wiki)
+* [Employee Admin Android App](https://github.com/PureMVC/purmevc-kotlin-demo-android-employeeadmin)
 
 ## Platforms / Technologies
 * [Kotlin](https://en.wikipedia.org/wiki/Kotlin_(programming_language))
 * [Android](https://en.wikipedia.org/wiki/Android_(operating_system))
 
-## Status
-Production - [Version 1.3](https://github.com/PureMVC/puremvc-kotlin-multicore-framework/blob/master/VERSION)
-
 ## License
-* PureMVC MultiCore Framework for Kotlin - Copyright © 2020 [Saad Shams](https://www.linkedin.com/in/muizz)
-* PureMVC - Copyright © 2020 [Futurescale, Inc.](http://futurescale.com/)
+* PureMVC MultiCore Framework for Kotlin - Copyright © 2020-2026 [Saad Shams](https://www.linkedin.com/in/muizz)
+* PureMVC - Copyright © 2020-2026 [Futurescale, Inc.](http://futurescale.com/)
 * All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

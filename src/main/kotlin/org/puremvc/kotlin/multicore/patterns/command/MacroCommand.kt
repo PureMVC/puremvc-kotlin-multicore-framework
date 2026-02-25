@@ -2,8 +2,8 @@
 //  MacroCommand.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.command
@@ -11,7 +11,7 @@ package org.puremvc.kotlin.multicore.patterns.command
 import org.puremvc.kotlin.multicore.interfaces.ICommand
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.observer.Notifier
-import java.util.*
+import java.util.Vector
 
 /**
  * <P>A base <code>ICommand</code> implementation that executes other <code>ICommand</code>s.</P>

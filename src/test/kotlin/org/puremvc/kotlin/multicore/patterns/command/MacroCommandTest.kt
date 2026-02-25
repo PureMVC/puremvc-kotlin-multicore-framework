@@ -2,15 +2,15 @@
 //  MacroCommandTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.patterns.command
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * Test the PureMVC SimpleCommand class.
@@ -63,8 +63,8 @@ class MacroCommandTest {
         command.execute(note)
 
         // test assertions
-        Assert.assertEquals(10, vo.result1)
-        Assert.assertEquals(25, vo.result2)
+        assertEquals(10, vo.result1)
+        assertEquals(25, vo.result2)
     }
 
 }

@@ -2,16 +2,20 @@
 //  ModelTest.kt
 //  PureMVC Kotlin Multicore
 //
-//  Copyright(c) 2020 Saad Shams <saad.shams@puremvc.org>
-//  Your reuse is governed by the Creative Commons Attribution 3.0 License
+//  Copyright(c) 2020-2026 Saad Shams <saad.shams@puremvc.org>
+//  Licensed under the BSD 3-Clause License
 //
 
 package org.puremvc.kotlin.multicore.core
 
-import org.junit.Assert
-import org.junit.Test
 import org.puremvc.kotlin.multicore.interfaces.IProxy
 import org.puremvc.kotlin.multicore.patterns.proxy.Proxy
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 /**
  * Test the PureMVC Model class.
@@ -27,7 +31,7 @@ class ModelTest {
         val model = Model.getInstance("ModelTestKey1") { key -> Model(key) }
 
         // test assertions
-        Assert.assertNotNull(model)
+        assertNotNull(model)
     }
 
     /**
@@ -47,11 +51,11 @@ class ModelTest {
         val data = (proxy!!.data as? Array<*>)?.filterIsInstance<String>()
 
         // test assertions
-        Assert.assertNotNull(data)
-        Assert.assertEquals(3, data?.size)
-        Assert.assertEquals("red", data?.get(0))
-        Assert.assertEquals("green", data?.get(1))
-        Assert.assertEquals("blue", data?.get(2))
+        assertNotNull(data)
+        assertEquals(3, data?.size)
+        assertEquals("red", data?.get(0))
+        assertEquals("green", data?.get(1))
+        assertEquals("blue", data?.get(2))
     }
 
     /**
@@ -68,10 +72,10 @@ class ModelTest {
         val removedProxy: IProxy? = model.removeProxy("sizes")
 
         // assert that we removed the appropriate proxy
-        Assert.assertEquals("sizes", removedProxy!!.name)
+        assertEquals("sizes", removedProxy!!.name)
 
         // ensure that the proxy is no longer retrievable from the model
-        Assert.assertNull(model.retrieveProxy("sizes"))
+        assertNull(model.retrieveProxy("sizes"))
     }
 
     /**
@@ -86,14 +90,14 @@ class ModelTest {
 
         // assert that the model.hasProxy method returns true
         // for that proxy name
-        Assert.assertTrue(model.hasProxy("aces"))
+        assertTrue(model.hasProxy("aces"))
 
         // remove the proxy
         model.removeProxy("aces")
 
         // assert that the model.hasProxy method returns false
         // for that proxy name
-        Assert.assertFalse(model.hasProxy("aces"))
+        assertFalse(model.hasProxy("aces"))
     }
 
     /**
@@ -109,13 +113,13 @@ class ModelTest {
         model.registerProxy(proxy)
 
         // assert that onRegister was called, and the proxy responded by setting its data accordingly
-        Assert.assertEquals(ModelTestProxy.ON_REGISTER_CALLED, proxy.data)
+        assertEquals(ModelTestProxy.ON_REGISTER_CALLED, proxy.data)
 
         // Remove the component
         model.removeProxy(ModelTestProxy.NAME)
 
         // assert that onRemove was called, and the proxy responded by setting its data accordingly
-        Assert.assertEquals(ModelTestProxy.ON_REMOVE_CALLED, proxy.data)
+        assertEquals(ModelTestProxy.ON_REMOVE_CALLED, proxy.data)
     }
 
     @Test
