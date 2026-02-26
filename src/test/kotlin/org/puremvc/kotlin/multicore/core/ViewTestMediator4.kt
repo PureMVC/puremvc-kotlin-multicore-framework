@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator4(var view: WeakReference<ViewTest>) : Mediator(NAME, view as WeakReference<Any?>), IMediator {
+class ViewTestMediator4(view: ViewTest) : Mediator(NAME, WeakReference(view)), IMediator {
 
     companion object {
         /**
@@ -27,11 +27,13 @@ class ViewTestMediator4(var view: WeakReference<ViewTest>) : Mediator(NAME, view
     }
 
     override fun onRegister() {
-        view.get()?.onRegisterCalled = true
+        view?.onRegisterCalled = true
     }
 
     override fun onRemove() {
-        view.get()?.onRemoveCalled = true
+        view?.onRemoveCalled = true
     }
 
+    @Suppress("UNCHECKED_CAST")
+    private val view: ViewTest? get() = (viewComponent as? WeakReference<ViewTest>)?.get()
 }

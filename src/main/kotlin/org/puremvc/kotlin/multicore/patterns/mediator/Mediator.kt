@@ -21,7 +21,7 @@ import java.lang.ref.WeakReference
  * @constructor Creates a Mediator
  */
 
-open class Mediator(override val name: String, override var viewComponent: WeakReference<*>?) : Notifier(), IMediator {
+open class Mediator(override val name: String, override var viewComponent: Any?) : Notifier(), IMediator {
 
     companion object {
         /**

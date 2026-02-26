@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  *
  * @see ViewTest ViewTest
  */
-class ViewTestMediator(override var viewComponent: WeakReference<*>?) : Mediator(NAME, viewComponent), IMediator {
+class ViewTestMediator(view: ViewTest) : Mediator(NAME, WeakReference(view)), IMediator {
 
     companion object {
         /**
@@ -32,4 +32,6 @@ class ViewTestMediator(override var viewComponent: WeakReference<*>?) : Mediator
         return arrayOf("ABC", "DEF", "GHI")
     }
 
+    @Suppress("UNCHECKED_CAST")
+    private val view: ViewTest? get() = (viewComponent as? WeakReference<ViewTest>)?.get()
 }
