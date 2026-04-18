@@ -18,7 +18,7 @@ package org.puremvc.kotlin.multicore.interfaces
  * <LI>Provide methods for setting and getting the data object.</LI>
  * </UL>
  *
- * <P>Additionally, <code>IProxy</code>s typically:</P>
+ * <P>Additionally, <code>IProxy</code>'s typically:</P>
  *
  * <UL>
  * <LI>Maintain references to one or more pieces of model data.</LI>
@@ -51,5 +51,4 @@ interface IProxy : INotifier {
      * <P>Called by the Model when the Proxy is removed</P>
      */
     fun onRemove()
-
 }

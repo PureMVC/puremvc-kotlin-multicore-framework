@@ -35,7 +35,7 @@ package org.puremvc.kotlin.multicore.interfaces
  * should be called when an <code>INotification</code> is broadcast. The Observer then
  * acts as a proxy for notifying the interested object.</P>
  *
- * <P>Observers can receive <code>Notification</code>s by having their
+ * <P>Observers can receive <code>Notification</code>'s by having their
  * <code>notifyObserver</code> method invoked, passing
  * in an object implementing the <code>INotification</code> interface, such
  * as a subclass of <code>Notification</code>.</P>
@@ -67,9 +67,9 @@ interface IObserver {
     fun notifyObserver(notification: INotification)
 
     /**
-     * <P>Compare the given object to the notificaiton context object.</P>
+     * <P>Compare the given object to the notification context object.</P>
      *
-     * @param object the object to compare.
+     * @param context the object to compare.
      * @return boolean indicating if the notification context and the object are the same.
      */
     fun compareNotifyContext(context: Any): Boolean

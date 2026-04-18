@@ -63,5 +63,4 @@ open class Proxy(override val name: String, override var data: Any?) : Notifier(
     override fun onRemove() {
 
     }
-
 }

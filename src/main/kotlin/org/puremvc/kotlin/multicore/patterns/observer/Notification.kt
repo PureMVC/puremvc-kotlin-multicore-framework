@@ -9,7 +9,6 @@
 package org.puremvc.kotlin.multicore.patterns.observer
 
 import org.puremvc.kotlin.multicore.interfaces.INotification
-import java.lang.StringBuilder
 
 /**
  * <P>A base <code>INotification</code> implementation.</P>
@@ -25,19 +24,19 @@ import java.lang.StringBuilder
  * <P>Notifications are not meant to be a replacement for Events
  * in Flex/Flash/Apollo. Generally, <code>IMediator</code> implementors
  * place event listeners on their view components, which they
- * then handle in the usual way. This may lead to the broadcast of <code>Notification</code>s to
- * trigger <code>ICommand</code>s or to communicate with other <code>IMediators</code>. <code>IProxy</code> and <code>ICommand</code>
- * instances communicate with each other and <code>IMediator</code>s
- * by broadcasting <code>INotification</code>s.</P>
+ * then handle in the usual way. This may lead to the broadcast of <code>Notification</code>'s to
+ * trigger <code>ICommand</code>'s or to communicate with other <code>IMediators</code>. <code>IProxy</code> and <code>ICommand</code>
+ * instances communicate with each other and <code>IMediator</code>'s
+ * by broadcasting <code>INotification</code>'s.</P>
  *
- * <P>A key difference between Flash <code>Event</code>s and PureMVC
- * <code>Notification</code>s is that <code>Event</code>s follow the
+ * <P>A key difference between Flash <code>Event</code>'s and PureMVC
+ * <code>Notification</code>'s is that <code>Event</code>'s follow the
  * 'Chain of Responsibility' pattern, 'bubbling' up the display hierarchy
  * until some parent component handles the <code>Event</code>, while
- * PureMVC <code>Notification</code>s follow a 'Publish/Subscribe'
+ * PureMVC <code>Notification</code>'s follow a 'Publish/Subscribe'
  * pattern. PureMVC classes need not be related to each other in a
  * parent/child relationship in order to communicate with one another
- * using <code>Notification</code>s.</P>
+ * using <code>Notification</code>'s.</P>
  *
  * @see Observer Observer
  *
@@ -69,5 +68,4 @@ open class Notification(override val name: String, override var body: Any?, over
         return StringBuilder("Notification Name: $name").append("\nBody:" + if (body == null) "null" else body)
             .append("\nType:" + if (type == null) "null" else type).toString()
     }
-
 }

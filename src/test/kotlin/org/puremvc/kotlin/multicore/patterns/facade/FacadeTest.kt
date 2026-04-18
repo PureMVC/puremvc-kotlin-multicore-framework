@@ -12,12 +12,7 @@ import org.puremvc.kotlin.multicore.interfaces.IProxy
 import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.proxy.Proxy
 import java.lang.ref.WeakReference
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 /**
  * Test the PureMVC Facade class.
@@ -119,14 +114,13 @@ class FacadeTest {
         assertNotNull(proxy)
 
         // retrieve data from proxy
-        val data = (proxy?.data as? Array<*>)?.filterIsInstance<String>()
+        val data = (proxy.data as? Array<*>)?.filterIsInstance<String>()
 
         // test assertions
         assertNotNull(data)
-        assertEquals(3, data?.size)
-        assertEquals(data?.get(0), "red")
-        assertEquals(data?.get(1), "green")
-        assertEquals(data?.get(2), "blue")
+        assertEquals("red", data[0])
+        assertEquals("green", data[1])
+        assertEquals("blue", data[2])
     }
 
     /**

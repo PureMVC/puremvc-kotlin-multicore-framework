@@ -1,1 +1,1 @@
-sourceset_dependencies='{":dokkaHtml/main":[]}'
+sourceset_dependencies='{"puremvc-kotlin-multicore-framework/JVM":[]}'

@@ -128,12 +128,12 @@ open class Facade(key: String) : IFacade {
      *
      * <UL>
      * <LI> You wish to initialize a different <code>IController</code>.</LI>
-     * <LI> You have <code>Commands</code> to register with the <code>Controller</code> at startup.. </LI>
+     * <LI> You have <code>Commands</code> to register with the <code>Controller</code> at startup.</LI>
      * </UL>
      *
      * <P>If you don't want to initialize a different <code>IController</code>,
      * call <code>super.initializeController()</code> at the beginning of your
-     * method, then register <code>Command</code>s.</P>
+     * method, then register <code>Command</code>'s.</P>
      */
     protected open fun initializeController() {
         controller = Controller.getInstance(multitonKey) { key -> Controller(key) }
@@ -148,18 +148,18 @@ open class Facade(key: String) : IFacade {
      *
      * <UL>
      * <LI> You wish to initialize a different <code>IModel</code>.</LI>
-     * <LI> You have <code>Proxy</code>s to register with the Model that do not
+     * <LI> You have <code>Proxy</code>'s to register with the Model that do not
      * retrieve a reference to the Facade at construction time.</LI>
      * </UL>
      *
      * <P>If you don't want to initialize a different <code>IModel</code>,
      * call <code>super.initializeModel()</code> at the beginning of your
-     * method, then register <code>Proxy</code>s.</P>
+     * method, then register <code>Proxy</code>'s.</P>
      *
      * <P>Note: This method is <i>rarely</i> overridden; in practice you are more
-     * likely to use a <code>Command</code> to create and register <code>Proxy</code>s
-     * with the <code>Model</code>, since <code>Proxy</code>s with mutable data will likely
-     * need to send <code>INotification</code>s and thus will likely want to fetch a reference to
+     * likely to use a <code>Command</code> to create and register <code>Proxy</code>'s
+     * with the <code>Model</code>, since <code>Proxy</code>'s with mutable data will likely
+     * need to send <code>INotification</code>'s and thus will likely want to fetch a reference to
      * the <code>Facade</code> during their construction.</P>
      */
     protected open fun initializeModel() {
@@ -183,9 +183,9 @@ open class Facade(key: String) : IFacade {
      * method, then register <code>IMediator</code> instances.</P>
      *
      * <P>Note: This method is <i>rarely</i> overridden; in practice you are more
-     * likely to use a <code>Command</code> to create and register <code>Mediator</code>s
+     * likely to use a <code>Command</code> to create and register <code>Mediator</code>'s
      * with the <code>View</code>, since <code>IMediator</code> instances will need to send
-     * <code>INotification</code>s and thus will likely want to fetch a reference
+     * <code>INotification</code>'s and thus will likely want to fetch a reference
      * to the <code>Facade</code> during their construction.</P>
      */
     protected open fun initializeView() {
@@ -305,7 +305,7 @@ open class Facade(key: String) : IFacade {
      * <P>Keeps us from having to construct new notification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      * @param body the body of the notification
      * @param type the type of the notification
      */
@@ -319,7 +319,7 @@ open class Facade(key: String) : IFacade {
      * <P>Keeps us from having to construct new notification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      * @param body the body of the notification
      */
     override fun sendNotification(notificationName: String, body: Any) {
@@ -332,14 +332,14 @@ open class Facade(key: String) : IFacade {
      * <P>Keeps us from having to construct new notification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      */
     override fun sendNotification(notificationName: String) {
         notifyObservers(Notification(notificationName))
     }
 
     /**
-     * <P>Notify <code>Observer</code>s.</P>
+     * <P>Notify <code>Observer</code>'s.</P>
      *
      * <P>This method is left public mostly for backward
      * compatibility, and to allow you to send custom

@@ -155,5 +155,4 @@ open class Model(key: String): IModel {
             return proxy
         }
     }
-
 }

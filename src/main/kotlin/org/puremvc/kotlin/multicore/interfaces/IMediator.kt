@@ -8,21 +8,19 @@
 
 package org.puremvc.kotlin.multicore.interfaces
 
-import java.lang.ref.WeakReference
-
 /**
  * <P>The interface definition for a PureMVC Mediator.</P>
  *
  * <P>In PureMVC, <code>IMediator</code> implementors assume these responsibilities:</P>
  *
  * <UL>
- * <LI>Implement a common method which returns a list of all <code>INotification</code>s
+ * <LI>Implement a common method which returns a list of all <code>INotification</code>'s
  * the <code>IMediator</code> has interest in.</LI>
  * <LI>Implement a notification callback method.</LI>
  * <LI>Implement methods that are called when the IMediator is registered or removed from the View.</LI>
  * </UL>
  *
- * <P>Additionally, <code>IMediator</code>s typically:</P>
+ * <P>Additionally, <code>IMediator</code>'s typically:</P>
  *
  * <UL>
  * <LI>Act as an intermediary between one or more view components such as text boxes or
@@ -43,57 +41,6 @@ import java.lang.ref.WeakReference
  * encapsulating that <code>IMediator</code>'s (<code>handleNotification</code>) method
  * and register it as an Observer for each <code>INotification</code> name returned by
  * <code>listNotificationInterests</code>.</P>
- *
- * <P>A concrete IMediator implementor usually looks something like this:</P>
- *
- * <pre>
- * {@code import org.puremvc.kotlin.multicore.patterns.mediator.*;
- * import org.puremvc.kotlin.multicore.patterns.observer.*;
- * import org.puremvc.kotlin.multicore.core.view.*;
- *
- * import com.me.myapp.model.*;
- * import com.me.myapp.view.*;
- * import com.me.myapp.controller.*;
- *
- * import javax.swing.JComboBox;
- * import java.awt.event.ActionListener;
- *
- * class ViewTestMediator(override var viewComponent: WeakReference<Any?>?) : Mediator(NAME, viewComponent), IMediator {
- *
- *     init {
- *         combo.addActionListener( this )
- *     }
- *
- *     override fun listNotificationInterests(): Array<String> {
- *         return arrayOf(MyFacade.SET_SELECTION,
- *                  MyFacade.SET_DATAPROVIDER)
- *     }
- *
- *     override fun handleNotification(notification: INotification) {
- *         switch ( notification.name ) {
- *             MyFacade.SET_SELECTION -> setSelection(notification)
- *             MyFacade.SET_DATAPROVIDER -> setDataProvider(notification);
- *         }
- *     }
- *
- *     // Set the data provider of the combo box
- *     fun setDataProvider( notification: INotification ) {
- *         combo.setModel(notification.body)
- *     }
- *
- *     // Invoked when the combo box dispatches a change event, we send a
- *     // notification with the
- *     fun actionPerformed(event: ActionEvent) {
- *         sendNotification( MyFacade.MYCOMBO_CHANGED, this )
- *     }
- *
- *     // A private getter for accessing the view object by class
- *     fun combo(): JComboBox {
- *         return viewComponent?.get() as JComboBox
- *     }
- *
- * }
- * }
  * </pre>
  *
  * @see org.puremvc.kotlin.multicore.interfaces.INotification INotification
@@ -127,5 +74,4 @@ interface IMediator : INotifier {
      * <P>Called by the View when the Mediator is removed</P>
      */
     fun onRemove()
-
 }

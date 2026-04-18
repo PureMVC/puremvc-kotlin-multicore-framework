@@ -48,11 +48,10 @@ open class Observer(override var notifyMethod: ((INotification) -> Unit)?, overr
     /**
      * <P>Compare an object to the notification context.</P>
      *
-     * @param object the object to compare
+     * @param context the object to compare
      * @return boolean indicating if the object and the notification context are the same
      */
     override fun compareNotifyContext(context: Any): Boolean {
         return context == notifyContext?.get()
     }
-
 }

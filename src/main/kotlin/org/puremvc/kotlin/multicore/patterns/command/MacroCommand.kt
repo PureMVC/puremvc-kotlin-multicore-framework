@@ -11,12 +11,12 @@ package org.puremvc.kotlin.multicore.patterns.command
 import org.puremvc.kotlin.multicore.interfaces.ICommand
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.observer.Notifier
-import java.util.Vector
+import java.util.*
 
 /**
- * <P>A base <code>ICommand</code> implementation that executes other <code>ICommand</code>s.</P>
+ * <P>A base <code>ICommand</code> implementation that executes other <code>ICommand</code>'s.</P>
  *
- * <P>A <code>MacroCommand</code> maintains an list of
+ * <P>A <code>MacroCommand</code> maintains a list of
  * <code>ICommand</code> Class references called <i>SubCommands</i>.</P>
  *
  * <P>When <code>execute</code> is called, the <code>MacroCommand</code>
@@ -70,13 +70,13 @@ open class MacroCommand : Notifier(), ICommand {
      * {
      *      addSubCommand { com.me.myapp.controller.FirstCommand() };
      *      addSubCommand { com.me.myapp.controller.SecondCommand() };
-     *      addSubCommand { com.me.myapp.controller.ThirdCommand() ];
+     *      addSubCommand { com.me.myapp.controller.ThirdCommand() };
      * }
      * }
      * </pre>
      *
      * <P>Note that <i>SubCommand</i>s may be any <code>ICommand</code> implementor,
-     * <code>MacroCommand</code>s or <code>SimpleCommands</code> are both acceptable.</P>
+     * <code>MacroCommand</code>'s or <code>SimpleCommands</code> are both acceptable.</P>
      */
     open fun initializeMacroCommand() {
 
@@ -100,7 +100,7 @@ open class MacroCommand : Notifier(), ICommand {
      * <P>The <i>SubCommands</i> will be called in First In/First Out (FIFO)
      * order.</P>
      *
-     * @param notification the <code>INotification</code> object to be passsed to each <i>SubCommand</i>.
+     * @param notification the <code>INotification</code> object to be passed to each <i>SubCommand</i>.
      */
     override fun execute(notification: INotification) {
         while (subcommands.isNotEmpty()) {
@@ -110,5 +110,4 @@ open class MacroCommand : Notifier(), ICommand {
             commandInstance.execute(notification)
         }
     }
-
 }

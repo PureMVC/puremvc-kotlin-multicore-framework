@@ -58,5 +58,4 @@ interface IModel {
      * @return the <code>IProxy</code> that was removed from the <code>Model</code>
      */
     fun removeProxy(proxyName: String): IProxy?
-
 }

@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap
  * <UL>
  * <LI>Maintain a cache of <code>IMediator</code> instances.</LI>
  * <LI>Provide methods for registering, retrieving, and removing <code>IMediators</code>.</LI>
- * <LI>Notifiying <code>IMediators</code> when they are registered or removed.</LI>
+ * <LI>Notifying <code>IMediators</code> when they are registered or removed.</LI>
  * <LI>Managing the observer lists for each <code>INotification</code> in the application.</LI>
  * <LI>Providing a method for attaching <code>IObservers</code> to an <code>INotification</code>'s observer list.</LI>
  * <LI>Providing a method for broadcasting an <code>INotification</code>.</LI>
@@ -168,7 +168,7 @@ open class View(key: String): IView {
 
             // Also, when a Notification's Observer list length falls to
             // zero, delete the notification key from the observer map
-            if (observers.size == 0) {
+            if (observers.isEmpty()) {
                 observerMap.remove(notificationName)
             }
         }
@@ -260,5 +260,4 @@ open class View(key: String): IView {
             return mediator
         }
     }
-
 }

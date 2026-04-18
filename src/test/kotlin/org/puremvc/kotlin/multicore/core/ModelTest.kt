@@ -10,12 +10,7 @@ package org.puremvc.kotlin.multicore.core
 
 import org.puremvc.kotlin.multicore.interfaces.IProxy
 import org.puremvc.kotlin.multicore.patterns.proxy.Proxy
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 /**
  * Test the PureMVC Model class.
@@ -48,14 +43,18 @@ class ModelTest {
         val model = Model.getInstance("ModelTestKey2") { key -> Model(key) }
         model.registerProxy(Proxy("colors", arrayOf("red", "green", "blue")))
         val proxy = model.retrieveProxy("colors")
-        val data = (proxy!!.data as? Array<*>)?.filterIsInstance<String>()
+
+        // test assertions
+        assertNotNull(proxy)
+
+        val data = (proxy.data as? Array<*>)?.filterIsInstance<String>()
 
         // test assertions
         assertNotNull(data)
-        assertEquals(3, data?.size)
-        assertEquals("red", data?.get(0))
-        assertEquals("green", data?.get(1))
-        assertEquals("blue", data?.get(2))
+        assertEquals(3, data.size)
+        assertEquals("red", data[0])
+        assertEquals("green", data[1])
+        assertEquals("blue", data[2])
     }
 
     /**

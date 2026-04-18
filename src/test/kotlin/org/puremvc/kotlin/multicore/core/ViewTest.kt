@@ -13,13 +13,7 @@ import org.puremvc.kotlin.multicore.patterns.mediator.Mediator
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
 import org.puremvc.kotlin.multicore.patterns.observer.Observer
 import java.lang.ref.WeakReference
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 /**
  * Test the PureMVC View class.

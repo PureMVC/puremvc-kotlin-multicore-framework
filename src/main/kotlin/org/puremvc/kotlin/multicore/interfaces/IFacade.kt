@@ -39,7 +39,7 @@ interface IFacade : INotifier {
      * <P>Retrieve a <code>IProxy</code> from the <code>Model</code> by name.</P>
      *
      * @param proxyName the name of the <code>IProxy</code> instance to be retrieved.
-     * @return the <code>IProxy</code> previously regisetered by <code>proxyName</code> with the <code>Model</code>.
+     * @return the <code>IProxy</code> previously registered by <code>proxyName</code> with the <code>Model</code>.
      */
     fun retrieveProxy(proxyName: String): IProxy?
 
@@ -92,7 +92,7 @@ interface IFacade : INotifier {
     /**
      * <P>Retrieve an <code>IMediator</code> instance from the <code>View</code>.</P>
      *
-     * @param mediatorName the name of the <code>IMediator</code> instance to retrievve
+     * @param mediatorName the name of the <code>IMediator</code> instance to retrieve
      * @return the <code>IMediator</code> previously registered with the given <code>mediatorName</code>.
      */
     fun retrieveMediator(mediatorName: String): IMediator?
@@ -114,7 +114,7 @@ interface IFacade : INotifier {
     fun removeMediator(mediatorName: String): IMediator?
 
     /**
-     * <P>Notify <code>Observer</code>s.</P>
+     * <P>Notify <code>Observer</code>'s.</P>
      *
      * <P>This method is left public mostly for backward
      * compatibility, and to allow you to send custom
@@ -127,5 +127,4 @@ interface IFacade : INotifier {
      * @param notification the <code>INotification</code> to have the <code>View</code> notify <code>Observers</code> of.
      */
     fun notifyObservers(notification: INotification)
-
 }

@@ -22,9 +22,9 @@ import org.puremvc.kotlin.multicore.patterns.facade.Facade
  * <code>sendNotification</code> that relieves implementation code of
  * the necessity to actually construct <code>Notifications</code>.</P>
  *
- * <P>The <code>Notifier</code> class, which all of the above mentioned classes
+ * <P>The <code>Notifier</code> class, which all the above-mentioned classes
  * extend, provides an initialized reference to the <code>Facade</code>
- * Multiton, which is required for the convienience method
+ * Multiton, which is required for the convenience method
  * for sending <code>Notifications</code>, but also eases implementation as these
  * classes have frequent <code>Facade</code> interactions and usually require
  * access to the facade anyway.</P>
@@ -66,7 +66,7 @@ open class Notifier : INotifier {
      * <P>Keeps us from having to construct new INotification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      * @param body the body of the notification
      * @param type the type of the notification
      */
@@ -80,7 +80,7 @@ open class Notifier : INotifier {
      * <P>Keeps us from having to construct new INotification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      * @param body the body of the notification
      */
     override fun sendNotification(notificationName: String, body: Any) {
@@ -93,7 +93,7 @@ open class Notifier : INotifier {
      * <P>Keeps us from having to construct new INotification
      * instances in our implementation code.</P>
      *
-     * @param notificationName the name of the notiification to send
+     * @param notificationName the name of the notification to send
      */
     override fun sendNotification(notificationName: String) {
         facade.sendNotification(notificationName)
@@ -119,5 +119,4 @@ open class Notifier : INotifier {
     override fun initializeNotifier(key: String) {
         multitonKey = key
     }
-
 }

@@ -9,11 +9,7 @@
 package org.puremvc.kotlin.multicore.core
 
 import org.puremvc.kotlin.multicore.patterns.observer.Notification
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 /**
  * Test the PureMVC Controller class.

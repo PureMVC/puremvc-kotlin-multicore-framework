@@ -11,7 +11,6 @@ package org.puremvc.kotlin.multicore.patterns.mediator
 import org.puremvc.kotlin.multicore.interfaces.IMediator
 import org.puremvc.kotlin.multicore.interfaces.INotification
 import org.puremvc.kotlin.multicore.patterns.observer.Notifier
-import java.lang.ref.WeakReference
 
 /**
  * <P>A base <code>IMediator</code> implementation.</P>
@@ -57,7 +56,7 @@ open class Mediator(override val name: String, override var viewComponent: Any?)
     }
 
     /**
-     * <P>Handle <code>INotification</code>s.</P>
+     * <P>Handle <code>INotification</code>'s.</P>
      *
      * <P>Typically this will be handled in a switch statement,
      * with one 'case' entry per <code>INotification</code>
@@ -80,5 +79,4 @@ open class Mediator(override val name: String, override var viewComponent: Any?)
     override fun onRemove() {
 
     }
-
 }

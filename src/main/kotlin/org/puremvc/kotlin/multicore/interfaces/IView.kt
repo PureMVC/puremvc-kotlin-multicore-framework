@@ -103,5 +103,4 @@ interface IView {
      * @return the <code>IMediator</code> that was removed from the <code>View</code>
      */
     fun removeMediator(mediatorName: String): IMediator?
-
 }

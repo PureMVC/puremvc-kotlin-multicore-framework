@@ -21,5 +21,4 @@ interface ICommand : INotifier {
      * @param notification an <code>INotification</code> to handle.
      */
     fun execute(notification: INotification)
-
 }

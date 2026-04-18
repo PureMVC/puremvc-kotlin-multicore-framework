@@ -141,7 +141,7 @@ open class Controller(key: String): IController {
      * for a particular <code>INotification</code>.</P>
      *
      * <P>If an <code>ICommand</code> has already been registered to
-     * handle <code>INotification</code>s with this name, it is no longer
+     * handle <code>INotification</code>'s with this name, it is no longer
      * used, the new <code>ICommand</code> is used instead.</P>
      *
      * <P>The Observer for the new ICommand is only created if this the
@@ -159,7 +159,7 @@ open class Controller(key: String): IController {
 
     /**
      * <P>If an <code>ICommand</code> has previously been registered
-     * to handle a the given <code>INotification</code>, then it is executed.</P>
+     * to handle a given <code>INotification</code>, then it is executed.</P>
      *
      * @param notification an <code>INotification</code>
      */
@@ -192,5 +192,4 @@ open class Controller(key: String): IController {
             commandMap.remove(notificationName)
         }
     }
-
 }

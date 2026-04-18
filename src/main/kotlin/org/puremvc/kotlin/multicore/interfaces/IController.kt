@@ -48,7 +48,7 @@ interface IController {
 
     /**
      * <P>Execute the <code>ICommand</code> previously registered as the
-     * handler for <code>INotification</code>s with the given notification name.</P>
+     * handler for <code>INotification</code>'s with the given notification name.</P>
      *
      * @param notification the <code>INotification</code> to execute the associated <code>ICommand</code> for
      */
@@ -68,5 +68,4 @@ interface IController {
      * @param notificationName the name of the <code>INotification</code> to remove the <code>ICommand</code> mapping for
      */
     fun removeCommand(notificationName: String)
-
 }

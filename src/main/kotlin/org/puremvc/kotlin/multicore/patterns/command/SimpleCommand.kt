@@ -40,5 +40,4 @@ open class SimpleCommand : Notifier(), ICommand {
     override fun execute(notification: INotification) {
 
     }
-
 }

@@ -18,7 +18,7 @@ package org.puremvc.kotlin.multicore.interfaces
  * <code>sendNotification</code> that relieves implementation code of
  * the necessity to actually construct <code>Notifications</code>.</P>
  *
- * <P>The <code>Notifier</code> class, which all of the above mentioned classes
+ * <P>The <code>Notifier</code> class, which all the above-mentioned classes
  * extend, also provides an initialized reference to the <code>Facade</code>
  * Singleton, which is required for the convenience method
  * for sending <code>Notifications</code>, but also eases implementation as these
@@ -74,5 +74,4 @@ interface INotifier {
      * @param key the multitonKey for this INotifier to use
      */
     fun initializeNotifier(key: String)
-
 }
